@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'stime');
+		data.addColumn('string', 'sip');
+		data.addColumn('string', 'sport');
+		data.addColumn('string', 'scc');
+		data.addColumn('string', 'dip');
+		data.addColumn('string', 'dport');
+		data.addColumn('string', 'dcc');
+		data.addColumn('string', 'pro');
+		data.addColumn('string', 'initF');
+		data.addColumn('string', 'flags');
+		data.addColumn('string', 'type');
+		data.addColumn('string', 'sensor');
+		data.addColumn('string', 'etime');
+        data.addRows([
+dataplaceholder
+        ]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(data, {showRowNumber: true});
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id='table_div'></div>
+  </body>
+</html>
