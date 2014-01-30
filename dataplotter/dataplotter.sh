@@ -228,6 +228,31 @@ rm temp.test
 
 
 #Function Initiation
+
+if [ "$1" == "-h" ]; then
+  cat README
+  exit 0
+fi
+
+if [ "$1" != "geomap" -a "$1" != "linechart"  -a "$1" != "treemap"  -a "$1" != "timeline"  -a "$1" != "piechart"  -a "$1" != "barchart"  -a "$1" != "columnchart" ]; then
+echo ""
+echo "ERROR: You must specify a support chart type. "
+echo ""
+echo "The only supported chart types for flowplotter are:"
+echo "./dataplotter geomap [independepent] [dependent]"
+echo "./dataplotter linechart [independepent] [dependent]"
+echo "./dataplotter treemap [independepent] [dependent]"
+echo "./dataplotter timeline [independepent] [dependent]"
+echo "./dataplotter piechart [independepent] [dependent]"
+echo "./dataplotter barchart [independepent] [dependent]"
+echo "./dataplotter columnchart [independepent] [dependent]"
+echo ""
+echo "Dataplotter help--"
+echo "./dataplotter -h"
+echo ""
+exit 0
+fi
+
 if [ "$1" = "geomap" ]; then
 geomap $2 $3
 fi
