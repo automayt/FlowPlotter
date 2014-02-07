@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+	dataplaceholder
+        ]);
+
+        var options = {
+          title: 'titleplaceholder',
+		  is3D: false,
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+        chart.draw(data, options, {vAxis: {logScale: true}});
+      }
+    </script>
+  </head>
+  <body>
+    <div id="barchart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
