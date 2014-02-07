@@ -20,7 +20,7 @@ linechart
 
 treemap
 - independent variable = Must specify an rwstats compatible field.
-- dependent variable = Must specify an rwstats compatible value (Records,Packets,Bytes). Currently sIP-Distinct,dIP-Distinct, and Distinct:[field] have not been tested.
+- dependent variable = Must specify an rwstats compatible value (Records, Packets, Bytes, sIP-Distinct, dIP-Distinct, or Distinct:[field])
 
 timeline
 - independent variable = Must specify an rwcut compatible field.
@@ -28,15 +28,15 @@ timeline
 
 piechart
 - independent variable = Must specify an rwstats compatible field.
-- dependent variable = Must specify an rwstats compatible value (Records,Packets,Bytes). Currently sIP-Distinct,dIP-Distinct, and Distinct:[field] have not been tested.
+- dependent variable = Must specify an rwstats compatible value (Records, Packets, Bytes, sIP-Distinct, dIP-Distinct, or Distinct:[field])
 
 barchart
 - independent variable = Must specify an rwstats compatible field.
-- dependent variable = Must specify an rwstats compatible value (Records,Packets,Bytes). Currently sIP-Distinct,dIP-Distinct, and Distinct:[field] have not been tested.
+- dependent variable = Must specify an rwstats compatible value (Records, Packets, Bytes, sIP-Distinct, dIP-Distinct, or Distinct:[field])
 
 columnchart
 - independent variable = Must specify an rwstats compatible field.
-- dependent variable = Must specify an rwstats compatible value (Records,Packets,Bytes). Currently sIP-Distinct,dIP-Distinct, and Distinct:[field] have not been tested.
+- dependent variable = Must specify an rwstats compatible value (Records, Packets, Bytes, sIP-Distinct, dIP-Distinct, or Distinct:[field])
 
 --Examples--
 
