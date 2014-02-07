@@ -6,7 +6,7 @@
 geomap () {
 #Variable Creation
 #independent variable is a string
-#value is an integer
+#value is a string
 title="$1 by $2"
 independent="$1"
 value="$2"
@@ -31,7 +31,7 @@ rm temp.test
 linechart () {
 #Variable Creation
 #independent variable is a string
-#value is an integer
+#value is an string
 title="$1 by $2"
 resolution="$1"
 value="3"
@@ -77,7 +77,7 @@ rm temp.test
 treemap () {
 #Variable Creation
 #independent variable is a string
-#value is an integer
+#value is a string
 title="$1 by $2"
 independent="$1"
 value="$2"
@@ -103,7 +103,7 @@ rm temp.test
 timeline () {
 #Variable Creation
 #independent variable is a string
-#value is an integer
+#dependent variable is a string
 title='Suspicious Server Traffic'
 title="$1 by $2"
 independent="$1"
@@ -137,7 +137,7 @@ rm temp.test
 piechart () {
 #Variable Creation
 #independent variable is a string
-#value is an integer
+#value is a string
 title="$1 by $2"
 independent="$1"
 value="$2"
@@ -163,7 +163,7 @@ rm temp.test
 barchart () {
 #Variable Creation
 #independent variable is a string
-#value is an integer
+#value is an string
 title="$1 by $2"
 independent="$1"
 value="$2"
@@ -188,7 +188,7 @@ rm temp.test
 columnchart () {
 #Variable Creation
 #independent variable is a string
-#value is an integer
+#value is an string
 title="$1 by $2"
 independent="$1"
 value="$2"

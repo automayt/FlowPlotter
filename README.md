@@ -12,7 +12,7 @@ The following chart types are currently functional
 
 geomap
 - independent variable = Must specify an rwstats compatible field for country type (scc or dcc).
-- dependent variable = Must specify an rwstats compatible value (Records,Packets,Bytes). Currently sIP-Distinct,dIP-Distinct, and Distinct:[field] have not been tested.
+- dependent variable = Must specify an rwstats compatible value (Records, Packets, Bytes, sIP-Distinct, dIP-Distinct, or Distinct:[field])
 
 linechart
 - independent variable = Must specify a bin-size that the dependent variable will be calculated by. For example, if you want "Records per Minute", this variable will be 60.
