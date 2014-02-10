@@ -10,11 +10,12 @@
         ]);
 
         var options = {
-          title: 'titleplaceholder'
+          title: 'titleplaceholder',
+		  vAxis: {logScale: true}
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data,  {vAxis: {logScale: true}});
+        chart.draw(data, options);
 		}
     </script>
   </head>

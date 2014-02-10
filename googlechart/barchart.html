@@ -11,11 +11,11 @@
 
         var options = {
           title: 'titleplaceholder',
-		  is3D: false,
+		  hAxis: {logScale: true}
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('barchart'));
-        chart.draw(data, options, {vAxis: {logScale: true}});
+        chart.draw(data, options);
       }
     </script>
   </head>
