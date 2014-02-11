@@ -56,10 +56,10 @@ Generate a timeline showing devices communicating with non-local and non-US host
 rwfilter --start-date=2013/12/27 --proto=0- --type=out,outweb --dcc=us,-- --fail=stdout | ./dataplotter.sh timeline sip dip > timeline.html
 
 Generate a piechart that shows the destination IP addresses (NOT in the 192.168.1.0/24 range) that exhibited the most records consisting of highport-highport communications -
-rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./dataplotter.sh piechart dport bytes > piechart.html
+rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./dataplotter.sh piechart dip bytes > piechart.html
 
 Generate a barchart that shows the destination IP addresses (NOT in the 192.168.1.0/24 range) that exhibited the most records consisting of highport-highport communications -
-rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./dataplotter.sh barchart dport bytes > barchart.html
+rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./dataplotter.sh barchart dip bytes > barchart.html
 
 Generate a columnchart that shows the destination IP addresses (NOT in the 192.168.1.0/24 range) that exhibited the most records consisting of highport-highport communications -
-rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./dataplotter.sh columnchart dport bytes > columnchart.html
+rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./dataplotter.sh columnchart dip bytes > columnchart.html

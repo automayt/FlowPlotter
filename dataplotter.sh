@@ -231,6 +231,7 @@ rm temp.test
 
 if [ "$1" == "-h" ]; then
   cat README.md
+  echo -e "\n"
   exit 0
 fi
 
