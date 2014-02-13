@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Dataplotter is a script that allows for the "easy" integration of SiLK results into various Google Visualization Chart APIs.
+#FlowPlotter is a script that allows for the "easy" integration of SiLK results into various Google Visualization Chart APIs.
 
 #GEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAPGEOMAP
 geomap () {
@@ -240,16 +240,16 @@ echo ""
 echo "ERROR: You must specify a support chart type. "
 echo ""
 echo "The only supported chart types for flowplotter are:"
-echo "./dataplotter geomap [independepent] [dependent]"
-echo "./dataplotter linechart [independepent] [dependent]"
-echo "./dataplotter treemap [independepent] [dependent]"
-echo "./dataplotter timeline [independepent] [dependent]"
-echo "./dataplotter piechart [independepent] [dependent]"
-echo "./dataplotter barchart [independepent] [dependent]"
-echo "./dataplotter columnchart [independepent] [dependent]"
+echo "./flowplotter geomap [independepent] [dependent]"
+echo "./flowplotter linechart [independepent] [dependent]"
+echo "./flowplotter treemap [independepent] [dependent]"
+echo "./flowplotter timeline [independepent] [dependent]"
+echo "./flowplotter piechart [independepent] [dependent]"
+echo "./flowplotter barchart [independepent] [dependent]"
+echo "./flowplotter columnchart [independepent] [dependent]"
 echo ""
-echo "Dataplotter help--"
-echo "./dataplotter -h"
+echo "flowplotter help--"
+echo "./flowplotter -h"
 echo ""
 exit 0
 fi
