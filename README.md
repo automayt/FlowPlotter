@@ -45,6 +45,11 @@ columnchart
 - independent variable = Must specify an rwstats compatible field.
 - dependent variable = Must specify an rwstats compatible value (Records, Packets, Bytes, sIP-Distinct, dIP-Distinct, or Distinct:[field])
 
+bubblechart
+- Displays a bytes:packets:records ratio bubblechart for the top 20 [independent variable] for a given filter.
+- independent variable = Must specify an rwstats compatible field.
+
+
 --Examples--
 
 Generate a geomap of bytes to from all traffic to destination country codes - 
@@ -67,3 +72,6 @@ rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.
 
 Generate a columnchart that shows the destination IP addresses (NOT in the 192.168.1.0/24 range) that exhibited the most records consisting of highport-highport communications -
 rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./flowplotter.sh columnchart dip bytes > columnchart.html
+
+Generate a bubblechart that shows the the top 20 destination country codes sorted by a bytes:records:packet ratio - 
+rwfilter --start=2014/02/01 --end-date=2014/02/05  --proto=0- --type=all --pass=stdout | ./flowplotter.sh bubblechart dcc > test.html

@@ -26,7 +26,6 @@ rm temp.test
 
 
 
-
 #linechartlinechartlinechartlinechartlinechartlinechartlinechartlinechartlinechartlinechartlinechart
 linechart () {
 #Variable Creation
@@ -68,8 +67,6 @@ sed '/dataplaceholder/{
 rm temp.test
 }
 #linechartlinechartlinechartlinechartlinechartlinechartlinechartlinechartlinechartlinechartlinechart
-
-
 
 
 
@@ -130,9 +127,6 @@ rm temp.test
 #timelinetimelinetimelinetimelinetimelinetimelinetimelinetimelinetimelinetimelinetimeline
 
 
-
-
-
 #piechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechart
 piechart () {
 #Variable Creation
@@ -156,7 +150,6 @@ sed '/dataplaceholder/{
 rm temp.test
 }
 #piechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechartpiechart
-
 
 
 #barchartbarchartbarchartbarchartbarchartbarchartbarchartbarchartbarchartbarchartbarchartbarchartbarchartbarchart
@@ -227,6 +220,33 @@ rm temp.test
 #tablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablecharttablechart
 
 
+
+#bubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechart
+bubblechart () {
+#Variable Creation
+#independent variable is a string
+#value is an string
+title="$1 by $2"
+independent="$1"
+graphtitle="Byte:Packet:Record for top 20 $independent"
+#####################
+#echo "['$independent', '$value']," > temp.test
+
+rwstats --fields=$independent --value=bytes,records,packets --count=20 --delimited=" " | awk '{print $1,$4,$2,$1,$3}'| grep -v ":"|sed 's/ /,/g' |\
+sed "s/\([a-zA-Z]\{1,20\}\),\([a-zA-Z]\{1,20\}\),\([a-zA-Z]\{1,20\}\),\([a-zA-Z]\{1,20\}\),\([a-zA-Z]\{1,20\}\)/['\1', '\2', '\3', '\4', '\5'],/g" |\
+sed "s/\(.\{1,20\}\),\([0-9]\{1,20\}\),\([0-9]\{1,20\}\),\(.\{1,20\}\),\(.\{1,20\}\)/['\1', \2, \3, '\4', \5],/g" | sed '$s/,$//' >> temp.test
+
+sed '/dataplaceholder/{
+    s/dataplaceholder//g
+    r temp.test
+}' googlechart/bubblechart.html | sed "s/titleplaceholder/${graphtitle}/g"
+
+rm temp.test
+}
+#bubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechartbubblechart
+
+
+
 #Function Initiation
 
 if [ "$1" == "-h" ]; then
@@ -235,7 +255,7 @@ if [ "$1" == "-h" ]; then
   exit 0
 fi
 
-if [ "$1" != "geomap" -a "$1" != "linechart"  -a "$1" != "treemap"  -a "$1" != "timeline"  -a "$1" != "piechart"  -a "$1" != "barchart"  -a "$1" != "columnchart" ]; then
+if [ "$1" != "geomap" -a "$1" != "linechart"  -a "$1" != "treemap"  -a "$1" != "timeline"  -a "$1" != "piechart"  -a "$1" != "barchart"  -a "$1" != "columnchart" -a "$1" != "bubblechart" ]; then
 echo ""
 echo "ERROR: You must specify a support chart type. "
 echo ""
@@ -247,8 +267,9 @@ echo "./flowplotter timeline [independepent] [dependent]"
 echo "./flowplotter piechart [independepent] [dependent]"
 echo "./flowplotter barchart [independepent] [dependent]"
 echo "./flowplotter columnchart [independepent] [dependent]"
+echo "./flowplotter bubblechart [independepent]"
 echo ""
-echo "flowplotter help--"
+echo "flowplotter --help"
 echo "./flowplotter -h"
 echo ""
 exit 0
@@ -274,6 +295,9 @@ barchart $2 $3
 fi
 if [ "$1" = "columnchart" ]; then
 columnchart $2 $3
+fi
+if [ "$1" = "bubblechart" ]; then
+bubblechart $2
 fi
 #if [ "$1" = "tablechart" ]; then
 #tablechart $2
