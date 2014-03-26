@@ -108,7 +108,7 @@ dependent="$2"
 if [ -z "${independent}" ]; then
 independent="sip"
 fi
-if [ -z "${dependent}" ]; then 
+if [ -z "${dependent}" ]; then
 dependent="dip"
 fi
 graphtitle="$independent by $dependent over time"
@@ -209,7 +209,7 @@ tablechart () {
 rwcut --fields=stime,sip,sport,scc,dip,dport,dcc,pro,initialF,flags,type,sen,etime --delimited=, --no-titles| head -1000 |\
  perl -p -i -e "s/(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)\,(.*?)$/['\$1', '\$2', '\$3', '\$4', '\$5', '\$6', \$7, '\$8', '\$9', '\$10', '\$11', '\$12', '\$13'],/" |\
  sed 's/\-\-//g'| sed '$s/,$//' >>temp.test
- 
+
  sed '/dataplaceholder/{
     s/dataplaceholder//g
     r temp.test
@@ -247,6 +247,40 @@ rm temp.test
 
 
 
+#forceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacity
+forceopacity () {
+#Variable Creation
+#source variable is a string
+#target variable is a string
+#value is an string
+title="$1 by $2"
+source="$1"
+if [ -z "$source" ]; then
+source="sip"
+echo "No source variable provided. Defaulting to sip"
+fi
+target="$2"
+if [ -z "$target" ]; then
+target="dip"
+echo "No target variable provided. Defaulting to dip"
+fi
+value="$3"
+if [ -z "$value" ]; then
+value="bytes"
+echo "No value variable provided. Defaulting to bytes"
+fi
+count="$4"
+if [ -z "$count" ]; then
+count="50"
+echo "No count variable provided. Defaulting to 50"
+fi
+graphtitle="source-target-value"
+#####################
+rwstats --top --count=$count --fields=$source,$target --value=$value --delimited=, --no-titles | cut -d ',' -f1,2,3 | sed '1 s/^/source,target,value\n/' > d3chart/force.csv
+}
+#forceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacity
+
+
 #Function Initiation
 
 if [ "$1" == "-h" ]; then
@@ -255,19 +289,20 @@ if [ "$1" == "-h" ]; then
   exit 0
 fi
 
-if [ "$1" != "geomap" -a "$1" != "linechart"  -a "$1" != "treemap"  -a "$1" != "timeline"  -a "$1" != "piechart"  -a "$1" != "barchart"  -a "$1" != "columnchart" -a "$1" != "bubblechart" ]; then
+if [ "$1" != "geomap" -a "$1" != "linechart"  -a "$1" != "treemap"  -a "$1" != "timeline"  -a "$1" != "piechart"  -a "$1" != "barchart"  -a "$1" != "columnchart" -a "$1" != "bubblechart" -a "$1" != "forceopacity" ]; then
 echo ""
 echo "ERROR: You must specify a support chart type. "
 echo ""
 echo "The only supported chart types for flowplotter are:"
-echo "./flowplotter geomap [independepent] [dependent]"
-echo "./flowplotter linechart [independepent] [dependent]"
-echo "./flowplotter treemap [independepent] [dependent]"
-echo "./flowplotter timeline [independepent] [dependent]"
-echo "./flowplotter piechart [independepent] [dependent]"
-echo "./flowplotter barchart [independepent] [dependent]"
-echo "./flowplotter columnchart [independepent] [dependent]"
-echo "./flowplotter bubblechart [independepent]"
+echo "./flowplotter geomap [independent] [dependent]"
+echo "./flowplotter linechart [independent] [dependent]"
+echo "./flowplotter treemap [independent] [dependent]"
+echo "./flowplotter timeline [independent] [dependent]"
+echo "./flowplotter piechart [independent] [dependent]"
+echo "./flowplotter barchart [independent] [dependent]"
+echo "./flowplotter columnchart [independent] [dependent]"
+echo "./flowplotter bubblechart [independent]"
+echo "./flowplotter forceopacity [source] [target] [value]"
 echo ""
 echo "flowplotter --help"
 echo "./flowplotter -h"
@@ -298,6 +333,9 @@ columnchart $2 $3
 fi
 if [ "$1" = "bubblechart" ]; then
 bubblechart $2
+fi
+if [ "$1" = "forceopacity" ]; then
+forceopacity $2 $3 $4 $5
 fi
 #if [ "$1" = "tablechart" ]; then
 #tablechart $2
