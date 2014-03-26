@@ -75,3 +75,6 @@ rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.
 
 Generate a bubblechart that shows the the top 20 destination country codes sorted by a bytes:records:packet ratio - 
 rwfilter --start=2014/02/01 --end-date=2014/02/05  --proto=0- --type=all --pass=stdout | ./flowplotter.sh bubblechart dcc > test.html
+
+Generate a force-directed graph showing two way relationships between IP addresses from rwstats, showing the top 100 sip,dip pairs sorted by the highest distinct dport numbers to each. Open d3chart/forceopacity.html in Firefox.
+rwfilter --start-date=2014/02/06 --proto=0- --type=all --pass=stdout | ./flowplotter.sh forceopacity sip dip distinct:dport 100
