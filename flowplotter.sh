@@ -13,7 +13,7 @@ value="$2"
 graphtitle="$independent by $value"
 ######################
 rwstats --top --count=275 --fields=$independent --value=$value --delimited=, |\
- grep ","| grep -v -- "--"| grep -v "a1" | grep -v "us"| cut -d "," -f1,2 |\
+ grep ","| grep -v -- "--"| grep -v "a1" | grep -v "a2" | grep -v "us"| grep -v "o1" | cut -d "," -f1,2 |\
  sed "1 s/\([A-Za-z]\{1,20\}\),\([A-Za-z]\{1,20\}\)/['\1', '\2'],/g"|sed "s/\([a-z]\{2\}\),\([0-9]\{1,50\}\)/['\1', \2],/g"|sed '$s/,$//' > temp.test
 
 sed '/dataplaceholder/{
