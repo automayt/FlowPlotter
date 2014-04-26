@@ -150,7 +150,7 @@ function tick() {
 }
 
 // action to take on mouse click
-function click() {
+function click(d) {
     d3.select(this).select("text").transition()
         .duration(750)
         .attr("x", 22)
@@ -162,10 +162,11 @@ function click() {
         .duration(750)
         .attr("r", 16)
         .style("fill", "lightsteelblue");
+    d3.select(this).classed("fixed", d.fixed = true);
 }
 
 // action to take on mouse double click
-function dblclick() {
+function dblclick(d) {
     d3.select(this).select("circle").transition()
         .duration(750)
         .attr("r", 6)
@@ -177,6 +178,7 @@ function dblclick() {
         .style("fill", "black")
         .style("stroke", "none")
         .style("font", "10px sans-serif");
+    d3.select(this).classed("fixed", d.fixed = false);
 }
 
 });
