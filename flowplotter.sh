@@ -276,7 +276,14 @@ echo "No count variable provided. Defaulting to 50"
 fi
 graphtitle="source-target-value"
 #####################
-rwstats --top --count=$count --fields=$source,$target --value=$value --delimited=, --no-titles | cut -d ',' -f1,2,3 | sed '1 s/^/source,target,value\n/' > d3chart/force.csv
+rwstats --top --count=$count --fields=$source,$target --value=$value --delimited=, --no-titles | cut -d ',' -f1,2,3 | sed '1 s/^/source,target,value\n/' >> temp.test
+
+sed '/dataplaceholder/{
+    s/dataplaceholder//g
+    r temp.test
+}' d3chart/forceopacity.html | sed "s/titleplaceholder/${graphtitle}/g"
+
+rm temp.test
 }
 #forceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacity
 
