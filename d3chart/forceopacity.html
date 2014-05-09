@@ -4,6 +4,8 @@
 <pre id="csvdata">dataplaceholder
 </pre>
 <style>
+
+
   #csvdata {
     display: none;
   }
@@ -31,6 +33,7 @@
     fill: #ccc;
     stroke: #fff;
     stroke-width: 1.5px;
+    cursor: crosshair;
   }
   text {
     fill: #000;
@@ -87,7 +90,7 @@ var links = JSON.parse(document.getElementById('parsed').innerHTML);
         return d.value;
       })]);
 
-      // asign a type per value to encode opacity
+      // assign a type per value to encode opacity
       links.forEach(function(link) {
         if (v(link.value) <= 25) {
           link.type = "twofive";
@@ -181,6 +184,24 @@ var links = JSON.parse(document.getElementById('parsed').innerHTML);
           .duration(750)
           .attr("r", 16)
           .style("fill", "lightsteelblue");
+          if (d3.event.shiftKey) {
+            d3.select(this).select("circle").transition()
+            .style("fill", "red");
+            d3.select(this).classed("fixed", d.fixed = true);
+            d3.select(this).select("text").transition()
+            .style("fill", "red");
+            //.remove();
+            return;
+          }
+          if (d3.event.altKey) {
+            d3.select(this).select("circle").transition()
+            .style("fill", "green");
+            d3.select(this).classed("fixed", d.fixed = true);
+            d3.select(this).select("text").transition()
+            .style("fill", "green");
+            //.remove();
+            return;
+          }
         d3.select(this).classed("fixed", d.fixed = true);
       }
 
