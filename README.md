@@ -63,6 +63,9 @@ forceopacity
 	- target = anything from --fields in rwstats
 	- value = anything from --value in rwstats
 	- nodelimit = anything from --count in rwstats
+- Click and drag a node to "stick it"
+- Hold shiftKey and click a node to turn it red
+- Hold altKey and click a node to turn it green
 =================================================================================
 
 
