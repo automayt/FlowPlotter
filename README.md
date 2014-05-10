@@ -1,8 +1,7 @@
 FlowPlotter
 ===========
 Jason Smith
-To-Do list - https://gist.github.com/automayt/66334c9da768fa9190d8
-===========
+
 
 Generates visualizations from the output of flow tools such as SiLK.
 
