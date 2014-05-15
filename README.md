@@ -65,6 +65,18 @@ forceopacity
 - Click and drag a node to "stick it"
 - Hold shiftKey and click a node to turn it red
 - Hold altKey and click a node to turn it green
+
+===========================================
+AssetDiscoveryTree.sh
+#Generates an Asset List using a pre-existing filter file.
+
+#Usage
+# Obtain a filter file with a large amount of network data, representative of all hosts on your network
+# $ rwfilter --start-date=2014/05/13 --proto=0- --type=all --pass=sample.rw
+
+# Run AssetDiscoveryTree.sh against the file and send to an output html file
+# $ ./AssetDiscoveryTree.sh /home/jason/sample.rw > /home/jason/assetlist.html
+
 =================================================================================
 
 
