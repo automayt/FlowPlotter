@@ -77,6 +77,7 @@ AssetDiscoveryTree.sh
 # Run AssetDiscoveryTree.sh against the file and send to an output html file
 # $ ./AssetDiscoveryTree.sh /home/jason/sample.rw > /home/jason/assetlist.html
 
+#inspired by http://mbostock.github.io/d3/talk/20111018/tree.html
 =================================================================================
 
 
