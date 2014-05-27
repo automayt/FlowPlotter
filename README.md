@@ -67,19 +67,31 @@ forceopacity
 - Hold altKey and click a node to turn it green
 
 ===========================================
-AssetDiscoveryTree.sh
-#Generates an Asset List using a pre-existing filter file.
+AssetDiscovery
+
+- Creates and Asset List based on SiLK data
 
 #Usage
-# Obtain a filter file with a large amount of network data, representative of all hosts on your network
-# $ rwfilter --start-date=2014/05/13 --proto=0- --type=all --pass=sample.rw
+# Use large data sets instead of focused data.
+# Due to the size of the datasets, you might be better of generating a sample file first.
 
-# Run AssetDiscoveryTree.sh against the file and send to an output html file
-# $ ./AssetDiscoveryTree.sh /home/jason/sample.rw > /home/jason/assetlist.html
+# Obtain a filter file with a large amount of network data, representative of all hosts on your network
+# $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=sample.rw
+# $ cat sample.rw | ./flowplotter.sh assetdiscovery > assetlist.html
+
+# Alternatively you can pipe directly to flowplotter as usual.
+# $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=stdout | ./flowplotter.sh assetdiscovery > assetlist.html
+
+# Also allows for custom thresholding using --count=50 and --threshold=3450012. 
+# Defaults to --percentage=1 if no option is given. See rwstats for more detail on those options.
+# $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=stdout | ./flowplotter.sh assetdiscovery --count=50 > assetlist.html
 
 #inspired by http://mbostock.github.io/d3/talk/20111018/tree.html
 =================================================================================
 
+
+
+EXAMPLES
 
 --Google Chart Examples--
 =========================
@@ -114,3 +126,6 @@ rwfilter --start=2014/02/01 --end-date=2014/02/05  --proto=0- --type=all --pass=
 
 Generate a force-directed graph showing two way relationships between IP addresses from rwstats, showing the top 100 sip,dip pairs sorted by the highest distinct dport numbers to each.
 rwfilter --start-date=2014/02/06 --proto=0- --type=all --pass=stdout | ./flowplotter.sh forceopacity sip dip distinct:dport 100 > forcetest.html
+
+Generate an asset tree based only on data provided. Best to provide well rounded data as seen below. Defaults to assets exhibiting at least 1 percent of the total service traffic.
+rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=stdout | ./flowplotter.sh assetdiscovery > assetlist.html

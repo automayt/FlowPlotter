@@ -288,6 +288,19 @@ rm temp.test
 #forceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacityforceopacity
 
 
+
+#assetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscovery
+assetdiscovery () {
+#Variable Creation
+#value is a string
+
+rwfilter stdin --proto=0- --pass=stdout > test.rw
+
+scripts/./AssetDiscoveryTree.sh test.rw $1
+rm test.rw
+}
+#assetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscoveryassetdiscovery
+
 #Function Initiation
 
 if [ "$1" == "-h" ]; then
@@ -296,20 +309,21 @@ if [ "$1" == "-h" ]; then
   exit 0
 fi
 
-if [ "$1" != "geomap" -a "$1" != "linechart"  -a "$1" != "treemap"  -a "$1" != "timeline"  -a "$1" != "piechart"  -a "$1" != "barchart"  -a "$1" != "columnchart" -a "$1" != "bubblechart" -a "$1" != "forceopacity" ]; then
+if [ "$1" != "geomap" -a "$1" != "linechart"  -a "$1" != "treemap"  -a "$1" != "timeline"  -a "$1" != "piechart"  -a "$1" != "barchart"  -a "$1" != "columnchart" -a "$1" != "bubblechart" -a "$1" != "forceopacity" -a "$1" != "assetdiscovery" ]; then
 echo ""
 echo "ERROR: You must specify a support chart type. "
 echo ""
 echo "The only supported chart types for flowplotter are:"
-echo "./flowplotter geomap [independent] [dependent]"
-echo "./flowplotter linechart [independent] [dependent]"
-echo "./flowplotter treemap [independent] [dependent]"
-echo "./flowplotter timeline [independent] [dependent]"
-echo "./flowplotter piechart [independent] [dependent]"
-echo "./flowplotter barchart [independent] [dependent]"
-echo "./flowplotter columnchart [independent] [dependent]"
-echo "./flowplotter bubblechart [independent]"
-echo "./flowplotter forceopacity [source] [target] [value]"
+echo "./flowplotter.sh geomap [independent] [dependent]"
+echo "./flowplotter.sh linechart [independent] [dependent]"
+echo "./flowplotter.sh treemap [independent] [dependent]"
+echo "./flowplotter.sh timeline [independent] [dependent]"
+echo "./flowplotter.sh piechart [independent] [dependent]"
+echo "./flowplotter.sh barchart [independent] [dependent]"
+echo "./flowplotter.sh columnchart [independent] [dependent]"
+echo "./flowplotter.sh bubblechart [independent]"
+echo "./flowplotter.sh forceopacity [source] [target] [value]"
+echo "./flowplotter.sh assetdiscovery [threshold]"
 echo ""
 echo "flowplotter --help"
 echo "./flowplotter -h"
@@ -343,6 +357,9 @@ bubblechart $2
 fi
 if [ "$1" = "forceopacity" ]; then
 forceopacity $2 $3 $4 $5
+fi
+if [ "$1" = "assetdiscovery" ]; then
+assetdiscovery $2
 fi
 #if [ "$1" = "tablechart" ]; then
 #tablechart $2
