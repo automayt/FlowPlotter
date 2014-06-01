@@ -50,6 +50,7 @@ columnchart
 bubblechart
 - Displays a bytes:packets:records ratio bubblechart for the top 20 [independent variable] for a given filter.
 - independent variable = Must specify an rwstats compatible field.
+
 ===========================================================================================================================================
 
 
