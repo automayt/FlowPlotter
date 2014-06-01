@@ -111,15 +111,15 @@
   <div id="parsed"></div>
 
   <script>
+	 //convert CSV to JSON
     var raw = d3.select("#csvdata").text();
 
     var parsed = d3.csv.parse(raw);
 
     d3.select("#parsed").text(JSON.stringify(parsed));
     var links = JSON.parse(document.getElementById('parsed').innerHTML);
-     // get the data
-     //d3.json("force.json", function(links) {
-
+     
+	 // get the data
     var nodes = {};
 
      // Compute the distinct nodes from the links.
@@ -143,7 +143,8 @@
       .links(links)
       .size([width, height])
       .linkDistance(60)
-      .charge(-300)
+      .charge(-700)
+	  .gravity(.15)
       .on("tick", tick)
       .start();
 
@@ -197,7 +198,7 @@
     .attr("id", String)
       .attr("viewBox", "0 -5 10 10")
       .attr("refX", 15)
-      .attr("refY", -1.5)
+      .attr("refY", -.15)
       .attr("markerWidth", 6)
       .attr("markerHeight", 6)
       .attr("orient", "auto")
