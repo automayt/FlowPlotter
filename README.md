@@ -17,7 +17,7 @@ Currently you must run a SiLK rwfilter command and pipe it to flowplotter.sh and
 The following chart types are currently functional
 
 
-Google Charts
+#Google Charts
 ==================
 geomap
 - independent variable = Must specify an rwstats compatible field for country type (scc or dcc).
@@ -71,22 +71,22 @@ AssetDiscovery
 
 - Creates and Asset List based on SiLK data
 
-#Usage
-# Use large data sets instead of focused data.
-# Due to the size of the datasets, you might be better of generating a sample file first.
+Usage
+ Use large data sets instead of focused data.
+ Due to the size of the datasets, you might be better of generating a sample file first.
 
-# Obtain a filter file with a large amount of network data, representative of all hosts on your network
-# $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=sample.rw
-# $ cat sample.rw | ./flowplotter.sh assetdiscovery > assetlist.html
+ Obtain a filter file with a large amount of network data, representative of all hosts on your network
+ $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=sample.rw
+ $ cat sample.rw | ./flowplotter.sh assetdiscovery > assetlist.html
 
-# Alternatively you can pipe directly to flowplotter as usual.
-# $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=stdout | ./flowplotter.sh assetdiscovery > assetlist.html
+ Alternatively you can pipe directly to flowplotter as usual.
+ $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=stdout | ./flowplotter.sh assetdiscovery > assetlist.html
 
-# Also allows for custom thresholding using --count=50 and --threshold=3450012. 
-# Defaults to --percentage=1 if no option is given. See rwstats for more detail on those options.
-# $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=stdout | ./flowplotter.sh assetdiscovery --count=50 > assetlist.html
+ Also allows for custom thresholding using --count=50 and --threshold=3450012. 
+ Defaults to --percentage=1 if no option is given. See rwstats for more detail on those options.
+ $ rwfilter --start-date=2014/02/06 --end-date=2014/02/08 --proto=0- --type=all --pass=stdout | ./flowplotter.sh assetdiscovery --count=50 > assetlist.html
 
-#inspired by http://mbostock.github.io/d3/talk/20111018/tree.html
+inspired by http://mbostock.github.io/d3/talk/20111018/tree.html
 =================================================================================
 
 
