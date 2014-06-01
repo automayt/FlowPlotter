@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.4.6"></script>
-<!-- <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script> -->
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 <pre id="csvdata">dataplaceholder
 </pre>
 <style>
@@ -219,6 +218,7 @@
       .data(force.nodes())
       .enter().append("g")
       .attr("class", "node")
+	  .on("mousedown", function() { d3.event.stopPropagation(); })
       .on("click", click)
       .on("dblclick", dblclick)
       .call(force.drag);
