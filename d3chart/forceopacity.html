@@ -175,7 +175,7 @@
       .attr("height", height)
       .attr("pointer-events", "all")
       .append('svg:g')
-      .call(d3.behavior.zoom().on("zoom", redraw))
+      .call(d3.behavior.zoom().on("zoom", redraw)).on("dblclick.zoom", null)
       .append('svg:g');
 
     var svg = vis
