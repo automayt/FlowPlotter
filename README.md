@@ -25,7 +25,7 @@ geomap
 
 linechart
 - independent variable = Must specify a bin-size that the dependent variable will be calculated by. For example, if you want "Records per Minute", this variable will be 60.
-- dependent variable = Must specify an rwcount compatible value (Records,Packets,Bytes).
+- dependent variable = Must specify an rwuniq compatible value (Records, Packets, Bytes, sIP-Distinct, dIP-Distinct, or Distinct:[field]).
 
 treemap
 - independent variable = Must specify an rwstats compatible field.
@@ -96,8 +96,8 @@ inspired by http://mbostock.github.io/d3/talk/20111018/tree.html
 Generate a geomap of bytes to from all traffic to destination country codes - 
 rwfilter --start-date=2013/12/27 --proto=0- --type=all --pass=stdout | ./flowplotter.sh geomap dcc bytes > geomap.html
 
-Generate a linechart for all outbound webtraffic displaying the amount of bytes per 60 second bins - 
-rwfilter --start-date=2013/12/27 --proto=0- --type=all --pass=stdout | ./flowplotter.sh linechart 60 bytes > linechart.html
+Generate a linechart for all traffic displaying the amount of bytes,records,packets, and distinct sip,dip, and dcc values. per 60 second bins - 
+rwfilter --start-date=2013/12/27 --proto=0- --type=all --pass=stdout | ./flowplotter.sh linechart 60 distinct:sip,distinct:dip,distinct:dcc,records,bytes,packets > linechart.html
 
 Generate a treemap that shows the destination IP addresses (NOT in the 192.168.1.0/24 range) that exhibited the most records consisting of highport-highport communications - 
 rwfilter --start-date=2013/12/27 --sport=1025- --dport=1025- --not-daddress=192.168.1.0/24 --proto=0- --type=all --pass=stdout | ./flowplotter.sh treemap dip records > treemap.html
