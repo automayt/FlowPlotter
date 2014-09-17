@@ -33,31 +33,26 @@ linechart () {
 #value is an string
 title="$1 by $2"
 resolution="$1"
-value="3"
-if [ "$2" = "records" ]; then
-value="2"
-valuename="records"
+value="$2"
+number_of_values=$(echo $(( $(grep -o ',' <<<"$value" | grep -c .) + 2)))
+valuelist=$(seq $number_of_values | tr '\n' ',' | sed 's/,$//g')
+
+if [ "$1" -eq "$1" ] 2>/dev/null; then
+  resolution="$1"
+else
+  echo "The resolution you selected is invalid. Your first argument to linechart should be an integer value in seconds"
+  exit
 fi
-if [ "$2" = "bytes" ]; then
-value="3"
-valuename="Bytes"
-fi
-if [ "$2" = "packets" ]; then
-value="4"
-valuename="Packets"
-fi
-if [ -z "$valuename" ]; then
-value="3"
-valuename="Bytes"
-fi
-if [ -z "$resolution" ]; then
-resolution="60"
-fi
+
 graphtitle="$valuename per $resolution second bins"
 
 ##########################
-rwcount --bin-size=$resolution --delimited=, | cut -d "," -f1,$value|\
-sed "s/\(.*\),\(.*\)/['\1', \2],/g"|sed '$s/,$//'| sed "s/, \([A-Za-z].*\)],/, '\1'],/g" > temp.test
+#rwcount --bin-size=$resolution --delimited=, | cut -d "," -f1,$value|\
+rwuniq --fields=stime --bin-time=$resolution --values=$value --delimited=, --no-titles | cut -d "," -f$valuelist |\
+sed "s/^\(.\{10\}T.\{8\}\)\,\(.*\)/['\1',\2],/g" | sed '$s/,$//' | sed "1 i\[stime,$value]" | sed "1 s/\[/\['/" | sed "1 s/,/','/g" | sed "1 s/\]/'\],/" > temp.test
+
+
+#sed "s/\(.*\),\(.*\)/['\1', \2],/g"|sed '$s/,$//'| sed "s/, \([A-Za-z].*\)],/, '\1'],/g" > temp.test
 
 sed '/dataplaceholder/{
     s/dataplaceholder//g
