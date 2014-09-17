@@ -48,7 +48,7 @@ graphtitle="$valuename per $resolution second bins"
 
 ##########################
 #rwcount --bin-size=$resolution --delimited=, | cut -d "," -f1,$value|\
-rwuniq --fields=stime --bin-time=$resolution --values=$value --delimited=, --no-titles | cut -d "," -f$valuelist |\
+rwuniq --fields=stime --bin-time=$resolution --values=$value --delimited=, --no-titles --sort-output | cut -d "," -f$valuelist |\
 sed "s/^\(.\{10\}T.\{8\}\)\,\(.*\)/['\1',\2],/g" | sed '$s/,$//' | sed "1 i\[stime,$value]" | sed "1 s/\[/\['/" | sed "1 s/,/','/g" | sed "1 s/\]/'\],/" > temp.test
 
 
